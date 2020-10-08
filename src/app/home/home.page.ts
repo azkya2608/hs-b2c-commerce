@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../classes/Product';
 import { FetchProductsService } from '../services/fetch-products.service';
+import { Store } from '../storeclasses/Store';
+import { StoresDetailsPage } from '../storepages/stores-details/stores-details.page';
+import { FetchStoresService } from '../stores/fetch-stores.service';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +12,14 @@ import { FetchProductsService } from '../services/fetch-products.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
+  
   products: Product;
-  constructor(private fetchProductsService: FetchProductsService) {}
+  stores: Store;
+  
+  constructor(private fetchProductsService: FetchProductsService , private fetchStoresService: FetchStoresService) {};
 
   ngOnInit(): void {
+    // product list
     this.fetchProductsService.getProducts().subscribe(
       data=>{
         console.log(data);
@@ -25,6 +32,20 @@ export class HomePage implements OnInit{
         }
       }
     );
+
+    //store list
+    this.fetchStoresService.getStores().subscribe(
+      data=>{
+        console.log(data);
+        this.stores = data;
+        console.log(this.stores);
+
+        for(let store of this.stores.data) {
+          console.log(store.name);
+          console.log(store.address);
+        }
+      }
+        );
   }
 
 }

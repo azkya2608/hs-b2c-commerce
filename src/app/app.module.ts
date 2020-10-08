@@ -12,7 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 
 import { HttpClientModule } from '@angular/common/http';
-import { FetchProductsService } from './services/fetch-products.service'
+import { FetchProductsService } from './services/fetch-products.service';
+import {FetchStoresService } from './stores/fetch-stores.service';
 
 
 
@@ -25,6 +26,7 @@ import { FetchProductsService } from './services/fetch-products.service'
     StatusBar,
     SplashScreen,
     FetchProductsService,
+    FetchStoresService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
